@@ -103,7 +103,7 @@ async function handleComplaint(complaint) {
         fields: [
           complaint.attachments.length ? {
             name: "Attachments",
-            value: complaint.attachments.map((a, i) => `[Attachment ${i + 1}](https://files.sikayetvar.com/complaint${a.url})`).join("\n"),
+            value: complaint.attachments.map((a) => `[${a.url.split("/").pop().split(".").slice(1).join(".")}](https://files.sikayetvar.com/complaint${a.url})`).join(", "),
             inline: true
           } : undefined,
           complaint.relatedCompanies.length ? {
