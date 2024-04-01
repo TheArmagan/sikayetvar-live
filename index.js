@@ -103,22 +103,22 @@ async function handleComplaint(complaint) {
         fields: [
           complaint.attachments.length ? {
             name: "Attachments",
-            value: complaint.attachments.map((a) => `[${a.url.split("/").pop().split(".").slice(1).join(".")}](https://files.sikayetvar.com/complaint${a.url})`).join(", "),
+            value: complaint.attachments.map((a) => `[${a.url.split("/").pop().split(".").slice(1).join(".")}](https://files.sikayetvar.com/complaint${a.url})`).join(", ").slice(0, 1000),
             inline: true
           } : undefined,
           complaint.relatedCompanies.length ? {
             name: "Related Companies",
-            value: complaint.relatedCompanies.map(c => `[${c.name}](https://www.sikayetvar.com/${c.url})`).join(", "),
+            value: complaint.relatedCompanies.map(c => `[${c.name}](https://www.sikayetvar.com/${c.url})`).join(", ").slice(0, 1000),
             inline: true
           } : undefined,
           complaint.grayListedWords.length ? {
             name: "Gray Listed Words",
-            value: complaint.grayListedWords.join(", "),
+            value: complaint.grayListedWords.join(", ").slice(0, 1000),
             inline: true
           } : undefined,
           complaint.undefinedWords.length ? {
             name: "Undefined Words",
-            value: complaint.undefinedWords.join(", "),
+            value: complaint.undefinedWords.join(", ").slice(0, 1000),
             inline: true
           } : undefined,
         ].filter(Boolean),
