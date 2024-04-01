@@ -129,7 +129,7 @@ async function handleComplaint(complaint) {
     });
 
     setTimeout(async () => {
-      await fs.promises.rm(tempFolder, { recursive: true });
+      await fs.promises.rm(tempFolder, { recursive: true }).catch(console.error);
     }, 5000);
   });
 }
