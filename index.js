@@ -75,7 +75,7 @@ async function handleComplaint(complaint) {
   }
 
   const zipPath = path.join(tempFolder, "complaint.zip");
-  await new Promise(r => zip.zip(tempFolder, zipPath, r));
+  console.log(await new Promise(r => zip.zip(tempFolder, zipPath, r)));
 
   makeSureSent(async () => {
     /** @type {import("discord.js").GuildTextBasedChannel} */
