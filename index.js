@@ -101,6 +101,11 @@ async function handleComplaint(complaint) {
         },
         timestamp: complaint.complainTime,
         fields: [
+          complaint.attachments.length ? {
+            name: "Attachments",
+            value: complaint.attachments.map((a, i) => `[Attachment ${i + 1}](https://files.sikayetvar.com/complaint${a.url})`).join("\n"),
+            inline: true
+          } : undefined,
           complaint.relatedCompanies.length ? {
             name: "Related Companies",
             value: complaint.relatedCompanies.map(c => `[${c.name}](https://www.sikayetvar.com/${c.url})`).join(", "),
