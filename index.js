@@ -61,12 +61,12 @@ events.addEventListener("complaint", (event) => {
 async function handleComplaint(complaint) {
   console.log(complaint);
   const tempFolder = path.join(__dirname, "temp", `${complaint.id}`);
+  let firstImagePath;
   try {
     mkdir(tempFolder);
 
     await fs.promises.writeFile(path.join(tempFolder, "complaint.json"), JSON.stringify(complaint, null, 2));
 
-    let firstImagePath;
     for (let i = 0; i < complaint.attachments.length; i++) {
       const atc = complaint.attachments[i];
       console.log("Downloading attachment", i + 1, "of", complaint.attachments.length, "for complaint", complaint.id);
