@@ -74,13 +74,13 @@ async function handleComplaint(complaint) {
       await download(`https://files.sikayetvar.com/complaint${atc.url}`, atcPath);
       if (!firstImagePath && atc.mimeType == "photo") firstImagePath = atcPath;
     }
-
-    const zipPath = path.join(tempFolder, "complaint.zip");
-    console.log(await new Promise(r => zip.zip(tempFolder, zipPath, r)));
   } catch {
     console.error("Error while handling complaint", complaint.id);
     await fs.promises.rm(tempFolder, { recursive: true }).catch(console.error);
   }
+
+  const zipPath = path.join(tempFolder, "complaint.zip");
+  console.log(await new Promise(r => zip.zip(tempFolder, zipPath, r)));
 
   makeSureSent(async () => {
     try {
